@@ -1,0 +1,16 @@
+.record-table {
+    border: 3px solid  #006622;
+    border-radius: 10px;
+    border-collapse: separate;
+    border-spacing: 5pt;
+}
+
+.record-table tbody {
+    margin: 10px;
+}
+
+.record-table th, .record-table tr, .record-table td, .record-table tbody {
+    border: 1px solid  #006622;
+    padding: 5px;
+    text-align: center;
+}

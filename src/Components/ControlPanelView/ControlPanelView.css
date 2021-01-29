@@ -1,0 +1,15 @@
+.control-panel-view {
+    background-color: #00b33c;
+}
+
+.view-container {
+    border: 3px solid #006622;
+    border-radius: 10px;
+    box-shadow: 3px 3px 3px 3px rgba(0,0,0,0.3);
+    background-color: rgba(0,0,0,0.1);
+}
+
+.view-title {
+    font-weight: bold;
+    font-size: 30px;
+}
