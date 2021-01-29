@@ -1,6 +1,7 @@
 import { Component } from 'react';
 import './ControlPanelView.css';
 import RecordTable from '../RecordTable/RecordTable';
+import OutletList from '../OutletList/OutletList';
 
 class ControlPanelView extends Component {
 
@@ -19,7 +20,9 @@ class ControlPanelView extends Component {
                     <div className="w-100 p-2 view-title-container d-flex justify-content-center">
                         <span className="view-title">Outlets</span>
                     </div>
-                    <div className="w-100 view-content flex-grow-1"></div>
+                    <div className="w-100 view-content flex-grow-1">
+                        <OutletList />
+                    </div>
                 </div>
             </div>
         );
