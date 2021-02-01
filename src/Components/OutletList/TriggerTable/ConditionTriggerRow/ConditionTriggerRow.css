@@ -1,0 +1,19 @@
+.sensor-select {
+    padding: 7px;
+    border-radius: 10px;
+    border: 2px solid #006622;
+}
+
+.operation-select {
+    padding: 7px;
+    border-radius: 10px;
+    border: 2px solid #006622;
+}
+
+.value-input {
+    width: 70px;
+    padding: 7px;
+    border-radius: 10px;
+    border: 2px solid #006622;
+    text-align: center;
+}

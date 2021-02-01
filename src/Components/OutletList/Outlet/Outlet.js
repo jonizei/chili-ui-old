@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import './Outlet.css';
+import TriggerTable from '../TriggerTable/TriggerTable';
 
 class Outlet extends Component {
 
@@ -24,6 +25,9 @@ class Outlet extends Component {
                             <span className="slider round"></span>
                         </label>
                     </div>
+                </div>
+                <div className="w-100 p-1 trigger-table-container">
+                    <TriggerTable />
                 </div>
             </div>
         );
