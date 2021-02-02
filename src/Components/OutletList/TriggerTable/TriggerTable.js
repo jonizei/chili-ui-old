@@ -1,11 +1,12 @@
 import { Component } from 'react';
+import './TriggerTable.css';
 import TimeTriggerRow from './TimeTriggerRow/TimeTriggerRow';
 import ConditionTriggerRow from './ConditionTriggerRow/ConditionTriggerRow';
 
 class TriggerTable extends Component {
 
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
 
         this.state = {
             triggers: []
@@ -16,8 +17,11 @@ class TriggerTable extends Component {
         return(
             <div className="w-100 p-1">
                 <table>
-                    <TimeTriggerRow />
-                    <ConditionTriggerRow />
+                    <tr>
+                        <td>
+                            <button className="trigger-control-btn pl-3 pr-3">Add New Trigger(s)</button>
+                        </td>
+                    </tr>
                 </table>
             </div>
         );

@@ -59,19 +59,27 @@ class ConditionTriggerRow extends Component {
         return(
             <tr>
                 <td>
-                    <select className="sensor-select">
+                    <select className="my-select-box">
                         { this.state.sensors }
                     </select>
                 </td>
 
                 <td>
-                    <select className="operation-select">
+                    <select className="my-select-box">
                         { this.state.operations }
                     </select>
                 </td>
 
                 <td>
                     <input type="number" className="value-input" />
+                </td>
+
+                <td>
+                    <button className="trigger-control-btn">Update</button>
+                </td>
+
+                <td>
+                    <button className="trigger-control-btn">Delete</button>
                 </td>
             </tr>
         );

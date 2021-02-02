@@ -3,8 +3,8 @@ import Outlet from './Outlet/Outlet';
 
 class OutletList extends Component {
 
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
 
         this.state = {
             outlets: []

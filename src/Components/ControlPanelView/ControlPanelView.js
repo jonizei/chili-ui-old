@@ -2,8 +2,18 @@ import { Component } from 'react';
 import './ControlPanelView.css';
 import RecordTable from '../RecordTable/RecordTable';
 import OutletList from '../OutletList/OutletList';
+import Modal from 'react-modal';
 
 class ControlPanelView extends Component {
+
+    constructor() {
+        super();
+
+        this.state = {
+            showModal: false
+        };
+
+    }
 
     render() {
         return(

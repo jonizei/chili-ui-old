@@ -42,7 +42,7 @@ class TimeTriggerRow extends Component {
         return(
             <tr>
                 <td>
-                    <select className="weekday-select">
+                    <select className="my-select-box">
                         { this.state.weekdays }
                     </select>
                 </td>
@@ -54,6 +54,14 @@ class TimeTriggerRow extends Component {
                 <td>
                     <input type="number" className="duration-input" />
                     <span className="p-1">Minutes</span>
+                </td>
+
+                <td>
+                    <button className="trigger-control-btn">Update</button>
+                </td>
+
+                <td>
+                    <button className="trigger-control-btn">Delete</button>
                 </td>
             </tr>
         );
