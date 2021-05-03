@@ -1,7 +1,6 @@
 .record-table {
-    border: 3px solid  #006622;
+    border: 1px solid black;
     border-radius: 10px;
-    border-collapse: separate;
     border-spacing: 5pt;
 }
 

@@ -1,16 +1,19 @@
 .my-select-box {
     padding: 7px;
     border-radius: 10px;
-    border: 2px solid #006622;
+    border: 1px solid black;
 }
 
 .trigger-table {
-    border: 3px solid #006622;
-    border-radius: 10px;
-    border-collapse: separate;
+    border: 2px solid black;
 }
 
 .trigger-control-btn {
     padding: 5px;
     border-radius: 10px;
+}
+
+.trigger-table-title {
+    font-weight: bold;
+    font-size: 20px;
 }

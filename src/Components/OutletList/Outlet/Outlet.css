@@ -1,6 +1,7 @@
 .outlet-container {
-    border: 3px solid #006622;
     border-radius: 10px;
+    box-shadow: 3px 3px 3px 3px rgba(0,0,0,0.3);
+    padding: 10px;
 }
 
 .outlet-details {

@@ -1,7 +1,7 @@
 .duration-input {
-    width: 70px;
-    padding: 7px;
+    width: 100px;
+    padding: 6px;
     border-radius: 10px;
-    border: 2px solid #006622;
+    border: 1px solid black;
     text-align: center;
 }

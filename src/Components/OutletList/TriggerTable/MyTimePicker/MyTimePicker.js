@@ -3,19 +3,17 @@ import './MyTimePicker.css';
 
 class MyTimePicker extends Component {
 
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
 
         this.state = {
+            onTimeChange: props.onTimeChange,
             hours: [],
-            minutes: [],
-            selectedHour: 0,
-            selectedMinute: 0
+            minutes: []
         };
 
         this.createHourOptions = this.createHourOptions.bind(this);
         this.createMinOptions = this.createMinOptions.bind(this);
-        this.onTimeChange = this.onTimeChange.bind(this);
     }
 
     componentDidMount() {
@@ -55,25 +53,14 @@ class MyTimePicker extends Component {
         this.setState({minutes: minOptions});
     }
 
-    onTimeChange = e => {
-
-        if(e.target.name === 'hourSelect') {
-            this.setState({selectedHour: e.target.value});
-        }
-        else if(e.target.name === 'minuteSelect') {
-            this.setState({selectedMinute: e.target.value});
-        }
-
-    }
-
     render() {
         return(
             <div className="my-time-picker d-flex justify-content-center">
-                <select name="hourSelect" className="my-time-select" onChange={this.onTimeChange}>
+                <select name="hourSelect" className="my-time-select" onChange={this.state.onTimeChange}>
                     { this.state.hours }
                 </select>
 
-                <select name="minuteSelect" className="my-time-select" onChange={this.onTimeChange}>
+                <select name="minuteSelect" className="my-time-select" onChange={this.state.onTimeChange}>
                     { this.state.minutes }
                 </select>     
             </div>
