@@ -33,6 +33,19 @@ class TriggerModal extends Component {
         , "LIGHT"
     ];
 
+    emptyTrigger = {
+        type: 0,
+        weekday: 0,
+        sensor: 0,
+        operation: 0,
+        value: 0,
+        duration: 0,
+        time: {
+            hour: 0,
+            minutes: 0
+        }
+    };
+
     constructor(props) {
         super(props);
 
@@ -40,19 +53,7 @@ class TriggerModal extends Component {
             isOpen: props.isOpen,
             onClose: props.onClose,
             addTrigger: props.addTrigger,
-            newTrigger: {
-                triggerType: 0,
-                weekday: "EVERYDAY",
-                sensor: "NO SENSOR",
-                operation: "NO OPERATION",
-                value: 0,
-                duration: 0,
-                time: {
-                    hour: 0,
-                    minutes: 0
-                }
-            },
-            triggerType: 0,
+            newTrigger: this.emptyTrigger,
             weekdays: [],
             operations: [],
             sensors: []
@@ -154,31 +155,37 @@ class TriggerModal extends Component {
         var tempState = this.state.newTrigger;
         switch(e.target.name) {
             case "typeSelect":
-                tempState = {triggerType: parseInt(e.target.value)};
+                tempState.type = parseInt(e.target.value);
+                tempState = {newTrigger: tempState};
                 break;
 
             case "sensorSelect":
-                tempState.sensor = e.target.value;
+                tempState.sensor = parseInt(e.target.value);
+                tempState = {newTrigger: tempState};
                 break;
             
             case "operationSelect":
-                tempState.operation = e.target.value;
+                tempState.operation = parseInt(e.target.value);
+                tempState = {newTrigger: tempState};
                 break;
 
             case "triggerValue":
                 tempState.value = parseInt(e.target.value);
+                tempState = {newTrigger: tempState};
                 break;
 
             case "weekSelect":
-                tempState.weekday = e.target.value;
+                tempState.weekday = parseInt(e.target.value);
+                tempState = {newTrigger: tempState};
                 break;
 
             case "triggerDuration":
                 tempState.duration = parseInt(e.target.value);
+                tempState = {newTrigger: tempState};
                 break;
         }
 
-        this.setState(tempState);
+        this.setState({tempState});
     }
 
     getConditionTriggerForm() {
@@ -225,7 +232,7 @@ class TriggerModal extends Component {
                         </select>
                     </div>
                     <div className="w-100">
-                        { this.state.triggerType === 1 ? this.getConditionTriggerForm() : this.getTimeTriggerForm() }
+                        { this.state.newTrigger.type === 1 ? this.getConditionTriggerForm() : this.getTimeTriggerForm() }
                     </div>
                     <div className="w-100 trigger-modal-submit">
                         <button className="trigger-control-btn pl-3 pr-3" onClick={this.state.onClose}>Cancel</button>
