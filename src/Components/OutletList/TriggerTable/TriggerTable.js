@@ -16,11 +16,12 @@ class TriggerTable extends Component {
     render() {
         return(
             <div className="w-100 p-1">
-                <table>
+                
+                <button className="trigger-control-btn pl-3 pr-3">Add New Trigger(s)</button>
+                
+                <table className="trigger-table">
                     <tr>
-                        <td>
-                            <button className="trigger-control-btn pl-3 pr-3">Add New Trigger(s)</button>
-                        </td>
+                        <th>Triggers</th>
                     </tr>
                 </table>
             </div>
