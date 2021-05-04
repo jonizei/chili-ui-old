@@ -18,68 +18,54 @@ class ConditionTriggerRow extends Component {
         , "LIGHT"
     ];
 
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
 
         this.state = {
-            operations: [],
-            sensors: []
+            trigger: props.trigger,
+            deleteTrigger: props.deleteTrigger
         };
 
-        this.createSensorOptions = this.createSensorOptions.bind(this);
-        this.createOperationOptions = this.createOperationOptions.bind(this);
+        this.getSensor = this.getSensor.bind(this);
+        this.getOperation = this.getOperation.bind(this);
     }
 
-    componentDidMount() {
-        this.createSensorOptions();
-        this.createOperationOptions();
-    }
+    
+    getSensor(sensor) {
 
-    createSensorOptions() {
-
-        var sensorOptions = [];
-        for(var i = 0; i < this.sensorArray.length; i++) {
-            sensorOptions.push(<option key={i} value={i}>{ this.sensorArray[i] }</option>);
+        if(sensor > -1 && sensor < this.sensorArray.length) {
+            return this.sensorArray[sensor];
         }
 
-        this.setState({sensors: sensorOptions});
+        return "";
     }
 
-    createOperationOptions() {
+    getOperation(operation) {
 
-        var operationOptions = [];
-        for(var i = 0; i < this.operationArray.length; i++) {
-            operationOptions.push(<option key={i} value={i}>{ this.operationArray[i] }</option>);
+        if(operation > -1 && operation < this.operationArray.length) {
+            return this.operationArray[operation];
         }
 
-        this.setState({operations: operationOptions});
+        return "";
     }
 
     render() {
         return(
             <tr>
                 <td>
-                    <select className="my-select-box">
-                        { this.state.sensors }
-                    </select>
+                    { this.getSensor(this.state.trigger.sensor) }
                 </td>
 
                 <td>
-                    <select className="my-select-box">
-                        { this.state.operations }
-                    </select>
+                    { this.getOperation(this.state.trigger.operation) }
                 </td>
 
                 <td>
-                    <input type="number" className="value-input" />
+                    { this.state.trigger.value }
                 </td>
 
                 <td>
-                    <button className="trigger-control-btn">Update</button>
-                </td>
-
-                <td>
-                    <button className="trigger-control-btn">Delete</button>
+                    <button className="trigger-control-btn" onClick={() => this.state.deleteTrigger(this.state.trigger.id)}>Delete</button>
                 </td>
             </tr>
         );

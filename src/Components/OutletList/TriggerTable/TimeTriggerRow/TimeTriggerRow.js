@@ -1,11 +1,11 @@
 import { Component } from 'react';
-import MyTimePicker from '../MyTimePicker/MyTimePicker';
 import './TimeTriggerRow.css';
 
 class TimeTriggerRow extends Component {
 
     weekdayArray = [
-        "MONDAY"
+        "EVERYDAY"
+        , "MONDAY"
         , "TUESDAY"
         , "WEDNESDAY"
         , "THURSDAY"
@@ -14,54 +14,60 @@ class TimeTriggerRow extends Component {
         , "SUNDAY"
     ];
 
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
 
         this.state = {
-            weekdays: []
+            trigger: props.trigger,
+            deleteTrigger: props.deleteTrigger
         };
 
-        this.createWeekdayOptions = this.createWeekdayOptions.bind(this);
+        this.getWeekday = this.getWeekday.bind(this);
+        this.getTime = this.getTime.bind(this);
     }
 
-    componentDidMount() {
-        this.createWeekdayOptions();
-    }
+    getWeekday(weekday) {
 
-    createWeekdayOptions() {
-
-        var weekdayOptions = [];
-        for(var i = 0; i < this.weekdayArray.length; i++) {
-            weekdayOptions.push(<option key={i} value={i}>{ this.weekdayArray[i] }</option>);
+        if(weekday > -1 && weekday < this.weekdayArray.length) {
+            return this.weekdayArray[weekday];
         }
 
-        this.setState({weekdays: weekdayOptions});
+        return "";
+    }
+
+    getTime(time) {
+
+        var strHour = "" + time.hour;
+        var strMinutes = "" + time.minutes;
+
+        if(time.hour < 10) {
+            strHour = "0" + strHour;
+        }
+        
+        if(time.minutes < 10) {
+            strMinutes = "0" + strMinutes
+        }
+
+        return strHour + ":" + strMinutes;
     }
 
     render() {
         return(
             <tr>
                 <td>
-                    <select className="my-select-box">
-                        { this.state.weekdays }
-                    </select>
+                    { this.getWeekday(this.state.trigger.weekday) }
                 </td>
 
                 <td>
-                    <MyTimePicker />
+                    { this.getTime(this.state.trigger.time) }
                 </td>
 
                 <td>
-                    <input type="number" className="duration-input" />
-                    <span className="p-1">Minutes</span>
+                    { this.state.trigger.duration }
                 </td>
 
                 <td>
-                    <button className="trigger-control-btn">Update</button>
-                </td>
-
-                <td>
-                    <button className="trigger-control-btn">Delete</button>
+                    <button className="trigger-control-btn" onClick={() => this.state.deleteTrigger(this.state.trigger.id)}>Delete</button>
                 </td>
             </tr>
         );

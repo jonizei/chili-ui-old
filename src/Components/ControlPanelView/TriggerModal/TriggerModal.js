@@ -1,7 +1,5 @@
 import { Component } from 'react';
 import Modal from 'react-modal';
-import TimeTriggerRow from '../../OutletList/TriggerTable/TimeTriggerRow/TimeTriggerRow';
-import ConditionTriggerRow from '../../OutletList/TriggerTable/ConditionTriggerRow/ConditionTriggerRow';
 import './TriggerModal.css';
 import MyTimePicker from '../../OutletList/TriggerTable/MyTimePicker/MyTimePicker';
 
@@ -33,19 +31,6 @@ class TriggerModal extends Component {
         , "LIGHT"
     ];
 
-    emptyTrigger = {
-        type: 0,
-        weekday: 0,
-        sensor: 0,
-        operation: 0,
-        value: 0,
-        duration: 0,
-        time: {
-            hour: 0,
-            minutes: 0
-        }
-    };
-
     constructor(props) {
         super(props);
 
@@ -53,7 +38,7 @@ class TriggerModal extends Component {
             isOpen: props.isOpen,
             onClose: props.onClose,
             addTrigger: props.addTrigger,
-            newTrigger: this.emptyTrigger,
+            newTrigger: props.newTrigger,
             weekdays: [],
             operations: [],
             sensors: []
@@ -68,7 +53,7 @@ class TriggerModal extends Component {
     }
 
     static getDerivedStateFromProps(props, state) {
-        return {isOpen: props.isOpen};
+        return {isOpen: props.isOpen, newTrigger: props.newTrigger};
     }
 
     componentDidMount() {
@@ -113,7 +98,7 @@ class TriggerModal extends Component {
                 <div className="time-form-component">
                     <label>Select weekday:</label>
                     <div>
-                        <select name="weekSelect" className="my-select-box" onChange={this.handleOnChange}>
+                        <select name="daySelect" className="my-select-box" onChange={this.handleOnChange}>
                             { this.state.weekdays }
                         </select>
                     </div>
@@ -174,7 +159,7 @@ class TriggerModal extends Component {
                 tempState = {newTrigger: tempState};
                 break;
 
-            case "weekSelect":
+            case "daySelect":
                 tempState.weekday = parseInt(e.target.value);
                 tempState = {newTrigger: tempState};
                 break;
