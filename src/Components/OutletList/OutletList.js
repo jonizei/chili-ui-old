@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import Outlet from './Outlet/Outlet';
+import axios from 'axios';
 
 class OutletList extends Component {
 
@@ -7,35 +8,61 @@ class OutletList extends Component {
         super(props);
 
         this.state = {
-            outlets: []
+            outlets: [],
+            isLoadingOutlets: true
         };
 
         this.loadOutlets = this.loadOutlets.bind(this);
+        this.getOutletElements = this.getOutletElements.bind(this);
+        this.updateOutlet = this.updateOutlet.bind(this);
     }
 
     componentDidMount() {
         this.loadOutlets();
     }
 
-    loadOutlets() {
-        var dummyOutlets = [
-            {id: 1, name: "Outlet 1"}
-            , {id: 2, name: "Outlet 2"}
-            , {id: 3, name: "Outlet 3"}
-        ];
+    async loadOutlets() {
+        await axios({
+            method: "get",
+            url: "http://192.168.8.20:8080/get-outlets"
+        }).then(res => {
+            this.setState({outlets: res.data, isLoadingOutlets: false});
+        }).catch(error => console.log(error));
+    }
 
-        var outletList = [];
-        dummyOutlets.forEach(element => outletList.push(<Outlet outlet={element} />));
+    async updateOutlet(outlet) {
+        var temp = this.state.outlets;
+        var index = temp.indexOf(outlet);
+        temp[index] = outlet;
+        
+        await axios({
+            method: "post",
+            url: "http://192.168.8.20:8080/update-outlets",
+            data: JSON.stringify(temp)
+        }).catch(error => console.log(error));
+    }
 
-        this.setState({outlets: outletList});
+    getOutletElements() {
+        var temp = [];
+        this.state.outlets.forEach(element => temp.push(<Outlet key={element.id} outlet={element} updateOutlet={this.updateOutlet} />));
+        return temp;
     }
 
     render() {
-        return(
-            <div className="w-100 d-flex flex-column p-2">
-                { this.state.outlets }
-            </div>
-        );
+        if(this.state.isLoadingOutlets) {
+            return(
+                <div className="w-100 d-flex flex-column p-2">
+                    <p>Loading Outlets...</p>
+                </div>
+            );
+        }
+        else {
+            return(
+                <div className="w-100 d-flex flex-column p-2">
+                    { this.getOutletElements() }
+                </div>
+            );
+        }
     }
 
 }

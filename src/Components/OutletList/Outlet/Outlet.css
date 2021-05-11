@@ -9,6 +9,10 @@
     font-size: 20px;
 }
 
+.outlet-status {
+    padding: 10px;
+}
+
 .toggle-switch {
     position: relative;
     width: 60px;

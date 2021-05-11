@@ -10,39 +10,21 @@ class TriggerTable extends Component {
         super(props);
 
         this.state = {
-            showModal: false,
-            triggerArray: [],
+            showModal: props.showModal,
+            triggerArray: props.triggers,
             openTriggerModal: props.openTriggerModal,
-            newTrigger: {},
-            nextId: 1
+            addNewTrigger: props.addNewTrigger,
+            deleteTrigger: props.deleteTrigger,
+            newTrigger: props.newTrigger,
+            openModal: props.openModal,
+            closeModal: props.closeModal
         };
 
-        this.addNewTrigger = this.addNewTrigger.bind(this);
-        this.openModal = this.openModal.bind(this);
-        this.closeModal = this.closeModal.bind(this);
         this.getTriggerElements = this.getTriggerElements.bind(this);
-        this.deleteTrigger = this.deleteTrigger.bind(this);
     }
 
-    componentDidMount() {
-        this.setState({newTrigger: TriggerTable.createEmptyTrigger()});
-    }
-
-    componentDidUpdate() {
-        console.log(this.state.triggerArray);
-    }
-
-    addNewTrigger(trigger) {
-        var temp = this.state.triggerArray;
-        trigger.id = this.state.nextId;
-        temp.push(trigger);
-
-        this.setState({
-            triggerArray: temp, 
-            showModal: false, 
-            newTrigger: TriggerTable.createEmptyTrigger(),
-            nextId: this.state.nextId + 1
-        });
+    static getDerivedStateFromProps(props, state) {
+        return {triggerArray: props.triggers, showModal: props.showModal, newTrigger: props.newTrigger};
     }
 
     getTriggerElements(array) {
@@ -53,16 +35,18 @@ class TriggerTable extends Component {
 
             if(e.type === 0) {
                 temp.push(
-                    <TimeTriggerRow 
+                    <TimeTriggerRow
+                        key={e.id} 
                         trigger={e}
-                        deleteTrigger={this.deleteTrigger} />
+                        deleteTrigger={this.state.deleteTrigger} />
                 );
             }
             else if(e.type === 1) {
                 temp.push(
                     <ConditionTriggerRow
+                        key={e.id}
                         trigger={e}
-                        deleteTrigger={this.deleteTrigger} />
+                        deleteTrigger={this.state.deleteTrigger} />
                 );
             }
 
@@ -71,47 +55,20 @@ class TriggerTable extends Component {
         return temp;
     }
 
-    static createEmptyTrigger() {
-        var temp = {
-            id: 0,
-            type: 0,
-            weekday: 0,
-            sensor: 0,
-            operation: 0,
-            value: 0,
-            duration: 0,
-            time: {
-                hour: 0,
-                minutes: 0
-            }
-        };
-        return temp;
-    }
-
-    openModal = e => {
-        this.setState({showModal: true});
-    }
-
-    closeModal = e => {
-        this.setState({showModal: false});
-    }
-
-    deleteTrigger(id) {
-        console.log(id);
-    }
-
     render() {
         return(
             <div className="w-100 p-1">
-                <TriggerModal isOpen={this.state.showModal} onClose={this.closeModal} addTrigger={this.addNewTrigger} newTrigger={this.state.newTrigger}/>
-                <button className="trigger-control-btn pl-3 pr-3" onClick={this.openModal}>Add New Trigger</button>
+                <TriggerModal isOpen={this.state.showModal} onClose={this.state.closeModal} addTrigger={this.state.addNewTrigger} newTrigger={this.state.newTrigger}/>
+                <button className="trigger-control-btn pl-3 pr-3" onClick={this.state.openModal}>Add New Trigger</button>
                 
                 <div>
                     <span className="trigger-table-title">Triggers</span>
                 </div>
 
                 <table className="trigger-table">
-                    { this.getTriggerElements(this.state.triggerArray) }
+                    <tbody>
+                        { this.getTriggerElements(this.state.triggerArray) }
+                    </tbody>
                 </table>
             </div>
         );

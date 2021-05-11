@@ -26,6 +26,10 @@ class TimeTriggerRow extends Component {
         this.getTime = this.getTime.bind(this);
     }
 
+    static getDerivedStateFromProps(props, state) {
+        return {trigger: props.trigger};
+    }
+
     getWeekday(weekday) {
 
         if(weekday > -1 && weekday < this.weekdayArray.length) {

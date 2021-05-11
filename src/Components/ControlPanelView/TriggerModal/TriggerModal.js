@@ -136,41 +136,41 @@ class TriggerModal extends Component {
     }
 
     handleOnChange = e => {
-
         var tempState = this.state.newTrigger;
         switch(e.target.name) {
             case "typeSelect":
                 tempState.type = parseInt(e.target.value);
-                tempState = {newTrigger: tempState};
                 break;
 
             case "sensorSelect":
                 tempState.sensor = parseInt(e.target.value);
-                tempState = {newTrigger: tempState};
                 break;
             
             case "operationSelect":
                 tempState.operation = parseInt(e.target.value);
-                tempState = {newTrigger: tempState};
                 break;
 
             case "triggerValue":
                 tempState.value = parseInt(e.target.value);
-                tempState = {newTrigger: tempState};
                 break;
 
             case "daySelect":
                 tempState.weekday = parseInt(e.target.value);
-                tempState = {newTrigger: tempState};
                 break;
 
             case "triggerDuration":
                 tempState.duration = parseInt(e.target.value);
-                tempState = {newTrigger: tempState};
+                break;
+
+            default:
+                tempState = null;
                 break;
         }
 
-        this.setState({tempState});
+        if(tempState !== null) {
+            tempState = {newTrigger: tempState};
+            this.setState({tempState});
+        }
     }
 
     getConditionTriggerForm() {

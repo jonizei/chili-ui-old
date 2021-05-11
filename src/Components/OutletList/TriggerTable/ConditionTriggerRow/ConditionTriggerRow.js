@@ -30,6 +30,10 @@ class ConditionTriggerRow extends Component {
         this.getOperation = this.getOperation.bind(this);
     }
 
+    static getDerivedStateFromProps(props, state) {
+        return {trigger: props.trigger};
+    }
+
     
     getSensor(sensor) {
 
