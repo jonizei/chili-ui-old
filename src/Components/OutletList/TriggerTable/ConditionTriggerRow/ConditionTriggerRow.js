@@ -56,6 +56,8 @@ class ConditionTriggerRow extends Component {
     render() {
         return(
             <tr>
+                <td>CONDITION</td>
+
                 <td>
                     { this.getSensor(this.state.trigger.sensor) }
                 </td>

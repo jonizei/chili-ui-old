@@ -61,12 +61,19 @@ class TriggerTable extends Component {
                 <TriggerModal isOpen={this.state.showModal} onClose={this.state.closeModal} addTrigger={this.state.addNewTrigger} newTrigger={this.state.newTrigger}/>
                 <button className="trigger-control-btn pl-3 pr-3" onClick={this.state.openModal}>Add New Trigger</button>
                 
-                <div>
+                <div className="trigger-table-title-container">
                     <span className="trigger-table-title">Triggers</span>
                 </div>
 
                 <table className="trigger-table">
                     <tbody>
+                        <tr>
+                            <th>Type</th>
+                            <th>Target</th>
+                            <th>Operation</th>
+                            <th>Value</th>
+                            <th></th>
+                        </tr>
                         { this.getTriggerElements(this.state.triggerArray) }
                     </tbody>
                 </table>

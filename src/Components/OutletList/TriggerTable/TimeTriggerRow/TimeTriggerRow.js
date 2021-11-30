@@ -58,6 +58,7 @@ class TimeTriggerRow extends Component {
     render() {
         return(
             <tr>
+                <td>TIME</td>
                 <td>
                     { this.getWeekday(this.state.trigger.weekday) }
                 </td>
@@ -67,7 +68,7 @@ class TimeTriggerRow extends Component {
                 </td>
 
                 <td>
-                    { this.state.trigger.duration }
+                    { this.state.trigger.duration } min
                 </td>
 
                 <td>

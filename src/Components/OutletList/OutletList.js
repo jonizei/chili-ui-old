@@ -15,10 +15,12 @@ class OutletList extends Component {
         this.loadOutlets = this.loadOutlets.bind(this);
         this.getOutletElements = this.getOutletElements.bind(this);
         this.updateOutlet = this.updateOutlet.bind(this);
+        this.loadDummyOutlets = this.loadDummyOutlets.bind(this);
     }
 
     componentDidMount() {
         this.loadOutlets();
+        //this.loadDummyOutlets();
     }
 
     async loadOutlets() {
@@ -28,6 +30,18 @@ class OutletList extends Component {
         }).then(res => {
             this.setState({outlets: res.data, isLoadingOutlets: false});
         }).catch(error => console.log(error));
+    }
+
+    loadDummyOutlets() {
+        var dummyOutlets = [
+            {name: "Outlet 1", triggers: [], stay_on: false, is_on: false},
+            {name: "Outlet 2", triggers: [], stay_on: false, is_on: false},
+            {name: "Outlet 3", triggers: [], stay_on: false, is_on: false},
+            {name: "Outlet 3", triggers: [], stay_on: false, is_on: false},
+            {name: "Outlet 3", triggers: [], stay_on: false, is_on: false}
+        ];
+
+        this.setState({outlets: dummyOutlets, isLoadingOutlets: false});
     }
 
     async updateOutlet(outlet) {
@@ -58,7 +72,7 @@ class OutletList extends Component {
         }
         else {
             return(
-                <div className="w-100 d-flex flex-column p-2">
+                <div className="w-100 p-2">
                     { this.getOutletElements() }
                 </div>
             );

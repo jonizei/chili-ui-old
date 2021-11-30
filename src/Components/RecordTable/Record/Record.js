@@ -14,11 +14,11 @@ class Record extends Component {
         return(
             <tr>
                 <td>{ this.state.record.id }</td>
-                <td>{ this.state.record.airTemperature }</td>
-                <td>{ this.state.record.airPressure }</td>
+                <td>{ this.state.record.air_temperature }</td>
+                <td>{ this.state.record.air_pressure}</td>
                 <td>{ this.state.record.humidity }</td>
                 <td>{ this.state.record.light }</td>
-                <td>{ this.state.record.recordTime }</td>
+                <td>{ this.state.record.datetime }</td>
             </tr>
         );
     }
