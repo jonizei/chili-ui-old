@@ -1,5 +1,6 @@
 # chili-ui
 This project is a frontend for the chiliserver project that exists in the chiliserver repository.
+
 Features:
 - Shows all recorded values from a database in a table
 - Lists all existing outlets to a list
