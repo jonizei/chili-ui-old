@@ -1,3 +1,6 @@
+# chili-ui
+This project is a frontend for the chiliserver project that exists in the chiliserver repository.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
