@@ -1,5 +1,9 @@
 # chili-ui
 This project is a frontend for the chiliserver project that exists in the chiliserver repository.
+Features:
+- Shows all recorded values from a database in a table
+- Lists all existing outlets to a list
+- UI for controlling outlets. (Turn outlet on/off or create trigger using condition or time)
 
 # Getting Started with Create React App
 
